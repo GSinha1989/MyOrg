@@ -1,0 +1,17 @@
+<apex:page controller="ActionPageController">
+    <apex:form >
+
+        <apex:actionFunction name="hitMe" action="{!iWantMyJSValues}" rerender="jsvalues">
+            <apex:param name="one" value="" />
+            <apex:param name="two" value="" />
+        </apex:actionFunction>
+        
+        <apex:outputPanel id="jsvalues">
+            <apex:outputText value="Value one: {!valueOne}" /><br/>
+            <apex:outputText value="Value two: {!valueTwo}" /><br />            
+        </apex:outputPanel>
+        
+        <span style="cursor: pointer;" 
+            onclick="hitMe(Date(), 'best shot')">Hit Me</span>
+    </apex:form>
+</apex:page>

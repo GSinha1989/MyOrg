@@ -1,0 +1,93 @@
+<apex:page controller="Lookup" showHeader="false" sidebar="false">
+ <apex:includeScript value="/canvas/sdk/js/publisher.js" />
+    <script>
+
+            function closePopupResult(){
+                window.close();
+            }
+            function closeAction() {
+                Sfdc.canvas.publisher.publish({ name : "publisher.close", payload : { refresh:"true" }});
+            }
+    function check(){
+        var checked_value;
+        var ele = document.getElementsByName("selectedRecord");
+        var asdas;
+        for(var i=0;i<ele.length;i++){
+            asdas = " "+ ele[i].checked;
+            if(ele[i].checked ==true){
+                
+                checked_value = ele[i].value;
+                break;
+                
+                
+            }
+        }
+    //alert(document.getElementsByName('selectedRecord').value);
+    return checked_value;
+    }
+    function onCompleteHandler(){
+        window.close();
+    }
+</script>
+  <apex:form id="form">
+  
+  		<apex:actionFunction name="hitMe" action="{!save}"  rerender="jsvalues" oncomplete="onCompleteHandler()">
+           <apex:param name="one" value="" />
+        </apex:actionFunction>
+         <apex:outputPanel id="jsvalues">
+        </apex:outputPanel>
+      <apex:pageBlock title="Buttons" id="button">
+          <apex:pageBlockSection >
+                <apex:commandButton onclick="hitMe(check());" value="save" oncomplete="onCompleteHandler()" />&nbsp;&nbsp; 
+                    
+                <apex:commandButton action="{!clear}" value="clear" onclick="cl();"/>&nbsp;&nbsp;
+                <apex:commandButton value="cancel" onclick="window.close(); return false;"/>&nbsp;&nbsp;
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+        <apex:pageBlock id="result" >
+            <apex:outputPanel rendered="{!listRecords.size > 0}" >
+                <apex:pageBlockTable value="{!listRecords}" var="res">
+                    <apex:column headervalue="Select Record">
+                            <input type="radio" name="selectedRecord" value="{!res.Id}" onchange="reRenderParentPage('{!res.Id}');"/>  
+                    </apex:column>
+                    <apex:column >
+                        {!res.Name}
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!listRecords.size = 0}">
+                <apex:outputText value="No records to display" />
+            </apex:outputPanel>
+
+        </apex:pageBlock>
+  </apex:form>
+<script>
+
+     function refreshParent() {
+        console.log("trigered");
+        window.opener.location.reload();
+    }
+            function cl(){
+               var ele = document.getElementsByName("selectedRecord");
+               for(var i=0;i<ele.length;i++)
+                  ele[i].checked = false;
+                  console.log("closing time");
+                  window.close();
+                  
+                  window.onunload = refreshParent;
+   
+                window.close();return false();
+            }
+            function reRenderParentPage(recordid){
+               // window.close() ;
+                 parent.window.opener.getSelectedRecordId(recordid); 
+            }
+            function closePopupResult(){
+                window.close();
+            }
+            function closeAction() {
+                Sfdc.canvas.publisher.publish({ name : "publisher.close", payload : { refresh:"true" }});
+            }
+        </script>
+          
+</apex:page>

@@ -1,0 +1,16 @@
+<apex:page controller="JSONClass" tabstyle="Account">
+<apex:form >
+<apex:pageBlock mode="edit"> 
+<apex:pageMessages /> 
+<apex:pageBlockSection >
+
+<apex:inputText value="{!aid}" label="ID : "/> 
+<apex:inputText value="{!Object_name}" label="Value Name"/>
+<apex:outputText value="{!Out}"/> 
+</apex:pageBlockSection>
+<apex:pageBlockButtons location="bottom">
+<apex:commandButton value="JSON" action="{!JSON}"/>
+</apex:pageBlockButtons>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

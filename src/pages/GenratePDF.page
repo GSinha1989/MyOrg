@@ -1,0 +1,9 @@
+<apex:page renderas="pdf" StandardController="Student__c">
+
+Name of the Student is 
+<apex:outputField value="{!Student__c.First_Name__c}" label="Name of the Student" 
+style="background-color:lightgray"/>
+<br/>
+Sex of the sTUDENT IS 
+<apex:outputField value="{!Student__c.Sex__c}"/>
+</apex:page>

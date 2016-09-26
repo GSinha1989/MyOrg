@@ -1,0 +1,27 @@
+<apex:page standardController="Student__c" >
+    <script>
+    var Name = '{!$CurrentPage.parameters.Fname}' + '{!$CurrentPage.parameters.Lname}';
+    var Class = '{!$CurrentPage.parameters.Class}';
+  window.onload = function() {
+     document.getElementById("one").innerHTML = "Name of Student" + Name;
+    document.getElementById("two").innerHTML = "Name of Class" + Class;	
+} 
+
+    document.getElementById("one").innerHTML = "Name of Student" + Name;
+    document.getElementById("two").innerHTML = "Name of Class" + Class;
+    </script>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection title=" Details" >
+                <table border="1">
+                    <td id="one">
+
+                    </td>
+                                        <td id="two">
+
+                    </td>
+                </table>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+	</apex:form>
+</apex:page>

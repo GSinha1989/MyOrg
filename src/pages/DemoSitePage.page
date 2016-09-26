@@ -1,0 +1,31 @@
+<apex:page controller="DemoClass"  >
+      <apex:form >
+        <apex:selectList value="{!countries}" multiselect="false" onchange="func();">
+            <apex:selectOptions value="{!items}"/>
+        </apex:selectList><p/>
+		<apex:actionFunction name="func" action="{!test}" rerender="out" status="status"/>
+        
+         
+          <apex:outputPanel id="out"> 
+        <apex:actionstatus id="status" startText="testing...">
+            <apex:facet name="stop"> 
+                <apex:outputPanel >
+                 
+
+                    Id of the student is {!student.ID} 
+                    <br/>
+                    Name of the student is {!student.First_Name__c} {!student.Last_Name__c}
+                    <br/>
+                    Age is {!student.Age__c}
+                    <br/>
+                    Sex is {!student.Sex__c}
+        
+                </apex:outputPanel>
+            </apex:facet>
+        </apex:actionstatus>
+    </apex:outputPanel>
+    </apex:form>
+
+    
+    
+</apex:page>

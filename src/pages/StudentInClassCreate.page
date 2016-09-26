@@ -1,0 +1,26 @@
+<apex:page standardController="Student__c">
+<script>
+   var classVal = '{!$CurrentPage.parameters.cid}';
+   
+</script>    
+<apex:form >
+       
+    <apex:pageBlock >
+    <apex:pageMessages ></apex:pageMessages>
+        <apex:pageBlockButtons location="top">
+            <apex:commandButton action="{!save}" value="Save"/>
+                
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection >
+            <apex:inputField id="testId" value="{!Student__c.First_Name__c}"/>
+            <apex:inputField value="{!Student__c.Last_Name__c}"/>
+            <apex:inputField value="{!Student__c.Class__c}"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>    
+</apex:form>
+<script>
+
+document.getElementById("j_id0:j_id2:j_id3:j_id32:j_id34").value = '{!$CurrentPage.parameters.cname}';  
+      document.getElementById("j_id0:j_id2:j_id3:j_id32:j_id34_lkid").value = '{!$CurrentPage.parameters.cid}';
+</script>
+</apex:page>

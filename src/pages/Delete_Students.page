@@ -1,0 +1,23 @@
+<apex:page StandardController="Student__c"  extensions="StudentController"	recordSetVar="students" action="{!bumpStudent}" tabStyle="Student__c">
+   <apex:form >
+       <apex:pageBlock title="Bump Selected Studnet" rendered="{!NOT(check)}"><apex:pageMessages ></apex:pageMessages>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!updateStudent}"  value="Continue"/>
+                <apex:commandButton action="{!doCancel}"  value="Cancel"/>
+                
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!selectedStudent}" var="stu">
+                <apex:column value="{!stu.Id}"/> 
+               <apex:column value="{!stu.Name}"/>
+            </apex:pageBlockTable> 
+        </apex:pageBlock>
+         <apex:pageBlock title="Bump Selected Student Nulll" rendered="{!check}"><apex:pageMessages ></apex:pageMessages>
+         	<h1>No records selected</h1>
+         	
+         </apex:pageBlock>
+    </apex:form>
+    <Script>
+    	
+    
+    </Script>    
+</apex:page>

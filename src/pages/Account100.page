@@ -1,0 +1,38 @@
+<apex:page standardController="Account" extensions="AccountExtension">  
+  <apex:form id="theForm" >   
+  <apex:pageBlock >
+  <apex:pageBlockSection title="Search condition">
+    
+     <apex:pageBlockSectionItem >
+     <apex:outputLabel value="BillingCity"/>
+     <apex:inputText value="{!BillingCity}" label="BillingCity"/>   
+     
+     </apex:pageBlockSectionItem>
+     <apex:pageBlockSectionItem >
+     <apex:outputLabel value="BillingState"/>
+        <apex:inputText value="{!BillingState}" label="BillingState"/>   
+     </apex:pageBlockSectionItem>
+     <apex:pageBlockSectionItem >
+     <apex:outputLabel value="BillingCountry"/>
+        <apex:inputText value="{!BillingCountry}" label="BillingCountry"/> 
+     </apex:pageBlockSectionItem>
+
+      </apex:pageBlockSection>
+      <apex:commandButton value="Search records" action="{!search}"/>  
+      <apex:commandButton value="Clear records" action="{!search}"/>  
+
+ </apex:pageBlock>
+   <apex:pageBlock title="Search Result" id="details">  
+    <apex:pageblockTable value="{!acc}" var="a">  
+     <apex:column >  
+      <apex:outputlink value="https://ap1.salesforce.com/{!a.id}">{!a.Name}</apex:outputlink>  
+     </apex:column>  
+     <apex:column value="{!a.id}"/>  
+     <apex:column value="{!a.BillingCity}"/>  
+     <apex:column value="{!a.BillingState}"/>  
+     <apex:column value="{!a.BillingCountry}"/>  
+       </apex:pageblockTable>
+      
+   </apex:pageBlock>   
+  </apex:form>  
+ </apex:page>

@@ -1,0 +1,25 @@
+<apex:page standardController="Student__c">
+    <script>
+    
+      function closeWindow() {  window.top.opener.location = '/{!id}';  }
+    </script>
+    <apex:form id="form" rendered="true">
+        <apex:pageBlock title="Update Name">
+         
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!save}" value="Save" onclick="closeWindow();" onkeyup="alert('hie');window.close();"  reRender="form" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="js" title="update Student Name" >
+                <apex:inputField id="name" value="{!Student__c.First_Name__c}" label="First name"/>
+                <apex:inputField id="name2" value="{!Student__c.Last_Name__c}" label="Last name"/>
+            </apex:pageBlockSection>
+       
+    	</apex:pageBlock> 
+    </apex:form>
+    <script>
+        window.onunload = refreshParent;
+        function refreshParent() {
+            window.close();
+        }
+    </script>
+</apex:page>

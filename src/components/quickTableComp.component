@@ -1,0 +1,33 @@
+<apex:component controller="quickTableHandler">
+    <apex:attribute name="cContainerId" type="String" required="true"  description="Id of the container which will hold & display the table" assignTo="{!ContainerId}"  />
+     <apex:attribute name="ccolumnFields" assignTo="{!columnFields}" type="String" description="Comma-separated list of fields to display." />
+    
+ <apex:form >
+	<apex:pageBlock >
+        <apex:pageBlockTable id="objTable" value="{!records}" var="r" rendered="{! IF( records != null && records.size >0, true, false)}">
+            <apex:column value="{!r.Name}" headerValue="Account Name">
+                <apex:facet name="header">
+                    <apex:outputpanel >                   
+                      <apex:commandlink style="text-decoration:underline" action="{!sortByName}" value="Account Name" rerender="objTable">
+    				  </apex:commandlink>
+                    </apex:outputpanel>                
+ 				</apex:facet>
+            </apex:column> 
+            <apex:column value="{!r.AccountNumber}" headerValue="Account Number">
+                <apex:facet name="header">
+                    <apex:outputpanel >                   
+                      <apex:commandlink style="text-decoration:underline" action="{!sortByNumber}" value="Account Number" rerender="objTable">
+    				  </apex:commandlink>
+                    </apex:outputpanel>                
+ 				</apex:facet>
+            </apex:column> 
+        </apex:pageBlockTable>
+        
+            <apex:commandButton id="First" value="First" action="{!First}" disabled="{!prev}"/>
+            <apex:commandButton id="Prev" value="Prev" action="{!Prev}" disabled="{!prev}"/>
+            <apex:commandButton id="Next" value="Next" action="{!Next}" disabled="{!nxt}"/>
+            <apex:commandButton id="Last" value="Last" action="{!Last}" disabled="{!nxt}"/>
+     
+   	</apex:pageBlock> 
+  </apex:form>
+</apex:component>

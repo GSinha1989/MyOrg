@@ -1,0 +1,21 @@
+<apex:page controller="TestWebService">
+<apex:form >
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:pageBlock title="Test CSOD connection">
+                <apex:pageBlockButtons title="Actions" location="top">
+                <apex:commandButton action="{!callout}" title="call Service" value="Submit"/>
+            </apex:pageBlockButtons>
+        <apex:pageBlockSection title=" testing ">
+            <apex:inputText value="{!sessionToken}" label="sessiontoken"/>
+            <apex:inputText value="{!dateString}" label="date"/>
+            <apex:inputText value="{!signature}" label="Signature"/>
+            <apex:inputText value="{!url}" size="40" label="URL"/>
+
+            
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title=" Results ">
+            <apex:inputTextarea value="{!result}" cols="100" label="Submit " rows="100" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

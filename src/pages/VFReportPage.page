@@ -1,0 +1,20 @@
+<apex:page controller="Reporting" action="{!getRecords}"  tabStyle="Account"
+           title="Report with Opportunity for Accounts">
+    <apex:pageBlock id="pb" title="Account with Opprtunity">
+        <apex:pageBlockTable title="Data for the Account and Opprtunity Amount" value="{!report}" var="rec">
+            <apex:column headerValue="Account ID">
+            {!rec.accID}
+            </apex:column>
+             <apex:column headerValue="Account Name">
+            {!rec.accName}
+            </apex:column>
+            <apex:column headerValue="Opportunity Names Semicolun Separted">
+            {!rec.oppName}
+            </apex:column>
+             <apex:column headerValue="AcMount">
+            {!rec.sum}
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>    
+   
+</apex:page>

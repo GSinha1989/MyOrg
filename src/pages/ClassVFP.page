@@ -1,0 +1,34 @@
+<apex:page standardController="Class__c" >
+<style  type="text/css">
+.activeTab {background-color: #23888D; color:yellow    ;
+background-image:none}
+#inactiveTab { background-color: lightgrey; color:black;
+background-image:none}
+</style>
+
+<apex:form id="activeTab">
+<div styleClass="activeTab">
+
+</div>
+
+
+	<apex:pageBlock title="Class {!Class__c.NameCustom__c}">
+		<apex:pageBlockButtons location="top">
+			<apex:commandButton value="Save" action="{!save}" /> 
+		</apex:pageBlockButtons>
+		<apex:pageBlockSection title=" Primary Details"  columns="2">
+			<apex:inputField value="{!Class__c.Board__c}"/> 
+			<apex:inputField value="{!Class__c.Class_Teacher__c}" required="true" /> 
+			<apex:inputTextarea value="{!Class__c.Detailed_Description__c}" /> 
+			<apex:inputField value="{!Class__c.Fee__c}" /> 
+			<apex:inputField value="{!Class__c.MaxSize__c}" /> 
+			<apex:inputField value="{!Class__c.MyCount__c}" /> 
+		</apex:pageBlockSection>
+        <apex:pageBlockSection title=" Secondary Details" >
+			<apex:inputField value="{!Class__c.NameCustom__c}"     /> 
+			<apex:inputField value="{!Class__c.Number_of_students__c}" /> 
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+</apex:form>
+
+</apex:page>

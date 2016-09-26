@@ -1,0 +1,86 @@
+<apex:page title="Hello World" controller="PurchaseOrderDetail" id="page">
+    <apex:form id="theform">
+    <apex:pageBlock id="header" rendered="true" title="Purchase order header Details">
+        <apex:pageBlockSection columns="2">
+            <apex:outputField value="{!poHeader.PO_Name__c}"/>
+            <apex:outputField value="{!poHeader.ForUser__c}"/>
+            <apex:outputField value="{!poHeader.Vendor__c}"/>
+            <apex:outputField value="{!poHeader.Description__c}"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock id="Items" title="Purchase order Line items">
+        <apex:pageBlockTable id="table" value="{!poLine}" var="l" rendered="true">
+            <apex:column >
+                <apex:facet name="header">Action</apex:facet>
+                <apex:commandLink action="{!removeItem}" value="X"  reRender="materialtable,table">
+                    <apex:param name="lineId" value="{!l.Id}"/>
+                    <apex:param name="matId" value="{!l.Material__r.Id}"/>
+                </apex:commandLink>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Product Name</apex:facet>
+                    {!l.Material__r.Name}
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Product Code</apex:facet>
+                    {!l.Material__r.Id}
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Quantity</apex:facet>
+                <apex:outputField value="{!l.Quantity__c}" >
+                
+                </apex:outputField>
+                    
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Price Per unit</apex:facet>
+                    {!l.Material__r.PricePerUnit__c}
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Total</apex:facet>
+                    {!(l.Material__r.PricePerUnit__c *l.Quantity__c)}
+            </apex:column>
+             <apex:inlineEditSupport event="ondblClick" 
+                        showOnEdit="saveButton,cancelButton" hideOnEdit="editButton" /> 
+        </apex:pageBlockTable>
+              <apex:pageBlockButtons > 
+                
+                  <apex:commandButton value="Save" action="{!save}" id="saveButton" reRender="table"   >
+                    <apex:param name="lineId" value=""/>
+                  </apex:commandButton>
+                <apex:commandButton value="Cancel" onClick="window.close();" id="cancelButton"  />
+            </apex:pageBlockButtons> 
+    </apex:pageBlock>
+        
+    <apex:pageBlock id="material" title="Available Materials">
+        <apex:pageBlockSection id="category">
+            <apex:selectList value="{!category}" size="1"  >
+                <apex:selectOptions value="{!Options}"></apex:selectOptions>
+                <apex:actionSupport event="onchange" reRender="materialtable" action="{!find}"/>
+            </apex:selectList>
+        </apex:pageBlockSection>
+        <apex:pageBlockTable id="materialtable" title="Materials" value="{!material}" var="mat" rendered="true">
+             <apex:column >
+                <apex:facet name="header">Material</apex:facet>
+                 <apex:commandLink title="Select Material " action="{!addToLineItem}" value="->{!mat.Text__c}" reRender="materialtable,table">{!mat.Name}
+                    <apex:param value="{!mat.Id}" name="matid" />
+                    <apex:param value="{!mat.Name}" name="matname" />
+                 </apex:commandLink>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Product code </apex:facet>
+                    {!mat.Id} 
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Material Category </apex:facet>
+                    {!mat.MaterialType__c} 
+            </apex:column>
+             <apex:column >
+                <apex:facet name="header">Price Per unit </apex:facet>
+                    {!mat.PricePerUnit__c} 
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>    
+</apex:form>
+    </apex:page>

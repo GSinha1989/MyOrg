@@ -1,0 +1,35 @@
+<apex:page controller="Pagination">
+<apex:form >
+<apex:pageBlock id="details">
+<apex:pageBlockSection title="Seelction Critereia">
+     <apex:pageBlockSectionItem >
+     <apex:outputLabel value="BillingCity"/>
+     <apex:inputText value="{!BillingCity}" label="BillingCity"/>   
+     
+     </apex:pageBlockSectionItem>
+     <apex:pageBlockSectionItem >
+     <apex:outputLabel value="BillingState"/>
+        <apex:inputText value="{!BillingState}" label="BillingState"/>   
+     </apex:pageBlockSectionItem>
+     <apex:pageBlockSectionItem >
+     <apex:outputLabel value="BillingCountry"/>
+        <apex:inputText value="{!BillingCountry}" label="BillingCountry"/> 
+     </apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+<apex:pageblockTable value="{!acc}" var="a">
+<apex:column value="{!a.Name}"/>
+<apex:column value="{!a.BillingCity}"/>
+<apex:column value="{!a.BillingState}"/>
+<apex:column value="{!a.BillingCountry}"/>
+
+</apex:pageblockTable>
+<apex:pageblockButtons >
+<apex:commandButton value="Serach" rerender="details" action="{!search}"/>
+<apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
+<apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}"/>
+<apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
+<apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
+</apex:pageblockButtons>
+</apex:pageBlock>
+</apex:form>
+</apex:page>
